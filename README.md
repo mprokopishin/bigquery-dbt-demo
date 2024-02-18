@@ -1,4 +1,4 @@
-# Data-DBT project
+# Bigquery-DBT-Demo project
 
 Local development using VS Code and Dev Container
 
