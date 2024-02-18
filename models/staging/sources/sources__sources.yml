@@ -1,0 +1,92 @@
+version: 2
+
+sources:
+  - name: sources
+    database: hazel-pillar-218719
+    schema: sources
+    tables:
+      - name: sales
+        columns:
+          - name: salesid
+            tests:
+              - not_null
+              - unique
+          - name: listid
+          - name: sellerid
+          - name: buyerid
+          - name: eventid
+          - name: dateid
+          - name: qtysold
+          - name: pricepaid
+          - name: commission
+          - name: saletime
+      - name: categories
+        columns:
+          - name: catid
+            tests:
+              - not_null
+              - unique
+          - name: catgroup
+          - name: catname
+          - name: catdesc
+      - name: dates
+        columns:
+          - name: dateid
+            tests:
+              - not_null
+              - unique
+          - name: caldate
+          - name: day
+          - name: week
+          - name: month
+          - name: qtr
+          - name: year
+          - name: holiday          
+      - name: events
+        columns:
+          - name: eventid
+            tests:
+              - not_null
+              - unique
+          - name: venueid
+          - name: catid
+          - name: dateid
+          - name: eventname
+          - name: starttime
+      - name: venue
+        columns:
+          - name: venueid
+            tests:
+              - not_null
+              - unique
+          - name: venuename
+          - name: venuecity
+          - name: venuestate
+          - name: venueseats
+      - name: users
+        columns:
+          - name: userid
+            tests:
+              - not_null
+              - unique
+          - name: username
+          - name: firstname
+          - name: lastname
+          - name: city
+          - name: state
+          - name: email
+          - name: phone
+      - name: listings
+        columns:
+          - name: listid
+            tests:
+              - not_null
+              - unique
+          - name: sellerid
+          - name: eventid
+          - name: dateid
+          - name: numtickets
+          - name: priceperticket
+          - name: totalprice
+          - name: listtime     
+          

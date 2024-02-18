@@ -1,0 +1,73 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+	"name": "DBT",
+	"build": {
+		// Sets the run context to one level up instead of the .devcontainer folder.
+		"context": "..",
+		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+		"dockerfile": "Dockerfile"
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		8080
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"innoverio.vscode-dbt-power-user", 
+				"redhat.vscode-yaml"
+			], 
+			"settings": {
+				"dbt.queryLimit": 10,
+				"[jijna-sql]": {
+					"editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
+					"editor.formatOnSave": false //Optional, I prefer to format manually.
+				},
+				"files.associations": {
+					"*.sql": "jinja-sql"
+				},
+				"sql.linter.executablePath": "sqlfluff",
+				"sql.format.enable": false,
+				"dbt.sqlFmtPath": "/usr/local/bin/sqlfmt",
+				"dbt.sqlFmtAdditionalParams": [
+					"--line-length 120"
+				], 
+				"yaml.schemas": {
+					"https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/dbt_yml_files.json": [
+						"/**/*.yml",
+						"!profiles.yml",
+						"!dbt_project.yml",
+						"!packages.yml",
+						"!selectors.yml",
+						"!profile_template.yml"
+					],
+					"https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/dbt_project.json": [
+						"dbt_project.yml"
+					],
+					"https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/selectors.json": [
+						"selectors.yml"
+					],
+					"https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/packages.json": [
+						"packages.yml"
+					]
+				}
+			}
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"configureZshAsDefaultShell": true,
+			"installOhMyZsh": true,
+			"upgradePackages": true,
+			"username": "automatic",
+			"userUid": "automatic",
+			"userGid": "automatic"
+		},
+		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
+	},
+	"runArgs": ["--env-file",".env"],
+	"remoteUser": "vscode"
+	//"postCreateCommand": "/home/vscode/ssh-port-forward/create_aliases.sh"
+}

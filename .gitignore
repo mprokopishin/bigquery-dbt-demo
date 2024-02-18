@@ -1,0 +1,11 @@
+target/
+dbt_packages/
+dbt_modules/
+logs/
+__pycache__
+.user.yml
+.env
+codegen.md
+.vscode/
+credentials.json
+desktop.ini

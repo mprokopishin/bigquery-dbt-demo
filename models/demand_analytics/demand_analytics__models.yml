@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: da_states
+    description: "States dictionary"
+    columns:
+      - name: state
+        description: "Primary key, a unique name of the state, 2-symbol abbreviation."
+        tests:
+          - unique
+          - not_null
+
+  - name: da_sales_by_state
+    description: "Sales analysis by seller's state and buyer's state"
+    columns:
+      - name: seller_state
+        description: "Seller's state"
+      - name: buyer_state
+        description: "Buyer's state"
+      - name: caldate
+        description: "Date of the deal"
+      - name: catid
+        description: "Foreign key, reference to ID in Categories table"
+      - name: ticket_cnt
+        description: "Number of tickets sold"
+      - name: revenue
+        description: "Sales revenue earned"
+      - name: commission
+        description: "Commission amount"
+      - name: seller_cnt
+        description: "Number of unique sellers"
+      - name: buyer_cnt
+        description: "Number of unique buyers"
+      - name: avg_ticket_price
+        description: "Average price of sold ticket"
+
+  - name: da_sales_by_state_agg
+    description: "Aggregated sales analysis by seller's state and buyer's state without date of the deal"
+    columns:
+      - name: seller_state
+        description: "Seller's state"
+      - name: buyer_state
+        description: "Buyer's state"
+      - name: catid
+        description: "Foreign key, reference to ID in Categories table"
+      - name: ticket_cnt
+        description: "Number of tickets sold"
+      - name: revenue
+        description: "Sales revenue earned"
+      - name: commission
+        description: "Commission amount"
+      - name: avg_ticket_price
+        description: "Average price of sold ticket"
+
+  - name: da_capacity_by_state
+    description: "Capacity analysis by venue's state"
+    columns:
+      - name: catid
+        description: "Foreign key, reference to ID in Categories table"
+      - name: venuestate
+        description: "Venue's state"
+      - name: seat_capacity
+        description: "Number of available seats of the venue"
+      - name: ticket_supply
+        description: "Number of tickets listed for that venue"
+
+  - name: da_sale_potential
+    description: "Comparison of fact sales and venues' capacity by state"
+    columns:
+      - name: state
+        description: "State"
+      - name: catname
+        description: "Category name"
+      - name: fact_tickets_sold
+        description: "Number of tickets sold"
+      - name: fact_revenue_earned
+        description: "Revenue earned"
+      - name: fact_commission_earned
+        description: "Commision earned"
+      - name: seat_capacity
+        description: "Number of available seats based on venue capacity"
+      - name: ticket_supply
+        description: "Number of listed tickets"
+      - name: potential_revenue
+        description: "Potential revenue"
